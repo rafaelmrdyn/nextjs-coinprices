@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react"
+
 import Http from '../helper/http'
 import Layout from './../components/Layout'
 import Prices from '../components/Prices'
 
-const Index = ({coins}) => {
+const Index = () => {
+    const [coins, setCoins] = useState([])
+    const getCoins = async () => {
+        const data = await Http.getCoins()
+        setCoins(data.coins)
+    }
+    useEffect(() => {
+        getCoins()
+    }, [])
 
     return (
         <Layout>
@@ -12,9 +22,9 @@ const Index = ({coins}) => {
     )
 }
 
-Index.getInitialProps = async () => {
-    const data = await Http.getCoins()
-    return data
-}
+// Index.getInitialProps = async () => {
+//     const data = await Http.getCoins()
+//     return data
+// }
 
 export default Index
