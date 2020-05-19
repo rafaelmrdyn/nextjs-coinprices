@@ -13,10 +13,8 @@ const Index = ({coins}) => {
 }
 
 Index.getInitialProps = async () => {
-    const {coins} = await Http.getCoins()
-    return {
-        coins
-    }
+    const data = await Http.getCoins()
+    return data
 }
 
 export default Index
